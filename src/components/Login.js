@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_IMAGE_URL, USER_AVATAR_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(false);
@@ -48,6 +49,7 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
+            photoURL: USER_AVATAR_URL,
           })
             .then(() => {
               const { uid, email, displayName } = auth.currentUser;
@@ -83,7 +85,11 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen bg-cover bg-no-repeat bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/IN-en-20240115-trifectadaily-perspective_alpha_website_large.jpg')]">
+    <div
+      className={
+        "h-screen bg-cover bg-no-repeat bg-[url('" + BG_IMAGE_URL + "')]"
+      }
+    >
       <div className="h-screen w-screen bg-[rgba(0,0,0,0.5)]">
         <Header />
         <div className="w-full">

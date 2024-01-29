@@ -14,6 +14,8 @@
 - implement signOut
 - implemented update profile after sign up
 - added auth route
+- unsubscribed to the onAuthStateChanges callback
+- added constant values to constants file
 
 ### Features:
 
