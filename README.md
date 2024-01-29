@@ -13,6 +13,7 @@
 - created redux store with user slice
 - implement signOut
 - implemented update profile after sign up
+- added auth route
 
 ### Features:
 
