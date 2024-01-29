@@ -10,6 +10,6 @@ export const MOVIE_API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: "Bearer yourtoken",
+    Authorization: "Bearer token",
   },
 };
