@@ -21,6 +21,10 @@
 - embeded youtube iframe with autoplay and mute
 - added secondary container
 - added custom hooks for upcoming,top rated and popular movies
+- added GPT search page and GPT search bar
+- added Multi-language to gpt search Page
+- added .env configs
+- added openai
 
 ### Features:
 
