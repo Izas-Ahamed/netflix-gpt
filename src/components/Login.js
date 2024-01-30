@@ -90,7 +90,7 @@ const Login = () => {
     >
       <div className="h-screen w-screen bg-[rgba(0,0,0,0.5)]">
         <Header />
-        <div className="w-full">
+        <div className="w-full h-screen flex items-center">
           <form className="px-12 py-12 w-[400px] min-w-[300px] flex flex-col m-auto bg-[rgba(0,0,0,0.7)] rounded-md">
             <h1 className="font-bold text-3xl text-white mx-2 mb-6">
               {isSignInForm ? "Sign In" : "Sign Up"}

@@ -13,3 +13,5 @@ export const MOVIE_API_OPTIONS = {
     Authorization: "Bearer token",
   },
 };
+
+export const POSTER_CDN_URL = "https://image.tmdb.org/t/p/w500/";

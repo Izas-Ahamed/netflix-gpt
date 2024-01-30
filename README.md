@@ -17,6 +17,8 @@
 - unsubscribed to the onAuthStateChanges callback
 - added constant values to constants file
 - added TMBD api config and fetched now playing movies
+- Custom hooks for movie
+- embeded youtube iframe with autoplay and mute
 
 ### Features:
 
