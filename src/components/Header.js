@@ -42,15 +42,15 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-screen h-24 p-5 bg-gradient-to-b from-black flex justify-between items-center fixed z-10">
-      <div className="h-full">
-        <img className="h-full" src={LOGO_URL} alt="logo"></img>
+    <div className="w-screen  p-5 bg-black md:bg-gradient-to-b md:bg-transparent from-black flex justify-between items-center fixed z-10 flex-col md:flex-row">
+      <div className="">
+        <img className="w-40" src={LOGO_URL} alt="logo"></img>
       </div>
       {user && (
-        <div className="flex items-center">
+        <div className="flex items-center flex-wrap justify-center">
           {showGptSearch && (
             <select
-              className="cursor-pointer text-white bg-gray-500  bg-opacity-50 rounded-lg font-medium p-2 py-1 mx-2 hover:bg-white hover:text-black"
+              className="curson text-white bg-gray-500  bg-opacity-50 rounded-lg font-medium p-2 py-1 mx-2 hover:bg-white hover:text-black"
               onChange={(e) => handleLanguageChange(e)}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -61,7 +61,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="text-white bg-gray-500  bg-opacity-50 rounded-lg font-medium p-2 py-1 mx-2 hover:bg-white hover:text-black "
+            className="text-white bg-gray-500  bg-opacity-50 rounded-lg font-medium p-2 py-1 mx-2 m-2 hover:bg-white hover:text-black "
             onClick={() => dispatch(toggleGptSearchView())}
           >
             {showGptSearch ? "Home" : "GPT Search"}
@@ -72,12 +72,14 @@ const Header = () => {
           >
             Sign out
           </button>
-          <div>
-            <img src={user.photoURL} className="h-8"></img>
+          <div className="flex items-center justify-center">
+            <div>
+              <img src={user.photoURL} className="h-8"></img>
+            </div>
+            <span className="text-white font-medium px-2 m-2 text-lg">
+              Hi {user.displayName}!
+            </span>
           </div>
-          <span className="text-white font-medium px-2 text-lg">
-            Hi {user.displayName}!
-          </span>
         </div>
       )}
     </div>

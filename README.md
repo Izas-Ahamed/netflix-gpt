@@ -24,7 +24,9 @@
 - added GPT search page and GPT search bar
 - added Multi-language to gpt search Page
 - added .env configs
-- added openai
+- added openai library
+- added openai search funtionality
+- added responsive
 
 ### Features:
 
