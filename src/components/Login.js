@@ -12,7 +12,7 @@ import { addUser } from "../utils/userSlice";
 import { BG_IMAGE_URL, USER_AVATAR_URL } from "../utils/constants";
 
 const Login = () => {
-  const [isSignInForm, setIsSignInForm] = useState(false);
+  const [isSignInForm, setIsSignInForm] = useState(true);
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);

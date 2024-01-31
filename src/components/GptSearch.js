@@ -1,14 +1,13 @@
 import { BG_IMAGE_URL } from "../utils/constants";
+import GptMoviesSuggestions from "./GptMoviesSuggestions";
 import GptSearchBar from "./GptSearchBar";
 
 const GptSearch = () => {
   return (
-    <div
-      className={
-        "h-screen w-full bg-cover bg-no-repeat bg-[url('" + BG_IMAGE_URL + "')]"
-      }
-    >
+    <div>
+      <img src={BG_IMAGE_URL} className="h-screen w-full fixed -z-20"></img>
       <GptSearchBar />
+      <GptMoviesSuggestions />
     </div>
   );
 };

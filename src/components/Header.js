@@ -50,7 +50,7 @@ const Header = () => {
         <div className="flex items-center">
           {showGptSearch && (
             <select
-              className="text-white bg-gray-500  bg-opacity-50 rounded-lg font-medium p-2 py-1 mx-2 hover:bg-white hover:text-black"
+              className="cursor-pointer text-white bg-gray-500  bg-opacity-50 rounded-lg font-medium p-2 py-1 mx-2 hover:bg-white hover:text-black"
               onChange={(e) => handleLanguageChange(e)}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
