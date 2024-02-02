@@ -61,7 +61,7 @@ const Login = () => {
                   uid,
                   email,
                   displayName: auth.currentUser.displayName,
-                  apiCallLimit: 4,
+                  apiCallLimit: 3,
                   photoURL: auth.currentUser.photoURL,
                 })
               );
@@ -71,7 +71,7 @@ const Login = () => {
               // ...
             });
 
-          setDoc(doc(db, "users", uid), { apiCallLimit: 4 })
+          setDoc(doc(db, "users", uid), { apiCallLimit: 3 })
             .then(() => {})
             .catch((error) => {
               // An error occurred
