@@ -83,7 +83,7 @@ const Login = () => {
         })
         .catch((error) => {
           const errorCode = error.code;
-          const errorMessage = error.message;
+          // const errorMessage = error.message;
           setErrorMessage(
             errorCode === "auth/email-already-in-use"
               ? "Email already in use"
@@ -100,11 +100,11 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const { uid } = userCredential.user;
+          // const { uid } = userCredential.user;
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
           setErrorMessage("Invalid Email ID or Password");
         });
     }
@@ -116,6 +116,7 @@ const Login = () => {
         <img
           src={BG_IMAGE_URL}
           className="h-screen w-full fixed object-cover -z-20"
+          alt="background poster"
         ></img>{" "}
         <Header />
         <div className="w-full h-screen flex items-center justify-center">

@@ -16,6 +16,7 @@ const GptSearch = () => {
         <img
           src={BG_IMAGE_URL}
           className="h-screen w-full fixed object-cover -z-20"
+          alt="background poster"
         ></img>
         <GptSearchBar />
         <GptMoviesSuggestions />
