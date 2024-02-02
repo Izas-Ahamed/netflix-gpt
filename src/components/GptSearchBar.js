@@ -39,7 +39,6 @@ const GptSearchBar = () => {
 
     const apiResults = await getDoc(doc(db, "users", user.uid));
     const apiData = apiResults.data();
-    console.log(apiResults.data());
     dispatch(addUser(apiData));
     if (apiData.apiCallLimit <= 0 && !apiKey) {
       return;
@@ -52,7 +51,7 @@ const GptSearchBar = () => {
         model: "gpt-3.5-turbo",
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
 
     if (!gptResults) {
