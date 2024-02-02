@@ -1,5 +1,5 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -7,11 +7,13 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO_URL, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
+import { doc, getDoc } from "firebase/firestore";
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const userAPIKey = useSelector((store) => store.gpt.userAPIKey);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -31,6 +33,16 @@ const Header = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
+
+        getDoc(doc(db, "users", uid))
+          .then((data) => {
+            const apiData = data.data();
+            dispatch(addUser(apiData));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
         dispatch(addUser({ uid, email, displayName, photoURL }));
         navigate("/browse");
       } else {
@@ -42,7 +54,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-screen  p-5 bg-black md:bg-gradient-to-b md:bg-transparent from-black flex justify-between items-center fixed z-10 flex-col md:flex-row">
+    <div className="w-screen  p-5 bg-black md:bg-gradient-to-b md:bg-transparent from-black flex justify-between items-center fixed z-50 flex-col md:flex-row">
       <div className="">
         <img className="w-40" src={LOGO_URL} alt="logo"></img>
       </div>

@@ -1,4 +1,4 @@
-export const validateForm = (email, password) => {
+export const validateForm = (email, password, isSignInForm) => {
   const isEmailValid = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(
     email
   );
@@ -8,7 +8,10 @@ export const validateForm = (email, password) => {
     );
 
   if (!isEmailValid) return "Invalid Email ID";
-  if (!isPasswordValid) return "Invalid Password";
+  if (!isPasswordValid)
+    return isSignInForm
+      ? "Invalid Password"
+      : "Password requires minimum 8 characters with atleast 1 Special character, 1 Uppercase, 1 Lowercase, 1 Number.";
 
   return null;
 };

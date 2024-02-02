@@ -6,10 +6,11 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BG_IMAGE_URL, USER_AVATAR_URL } from "../utils/constants";
+import { doc, setDoc } from "firebase/firestore";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -21,18 +22,23 @@ const Login = () => {
 
   const handleValidation = (e) => {
     e.preventDefault();
-
+    let message = null;
+    setErrorMessage(null);
     if (!isSignInForm) {
-      const message =
+      message =
         validateName(name.current.value) ||
         validateForm(email.current.value, password.current.value);
       setErrorMessage(message);
     } else {
-      const message = validateForm(email.current.value, password.current.value);
+      message = validateForm(
+        email.current.value,
+        password.current.value,
+        isSignInForm
+      );
       setErrorMessage(message);
     }
 
-    if (errorMessage) return;
+    if (message) return;
 
     if (!isSignInForm) {
       //sign up
@@ -44,24 +50,46 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-
+          const { uid, email } = auth.currentUser;
           updateProfile(user, {
             displayName: name.current.value,
             photoURL: USER_AVATAR_URL,
           })
             .then(() => {
-              const { uid, email, displayName } = auth.currentUser;
-              dispatch(addUser({ uid, email, displayName }));
+              dispatch(
+                addUser({
+                  uid,
+                  email,
+                  displayName: auth.currentUser.displayName,
+                  apiCallLimit: 4,
+                  photoURL: auth.currentUser.photoURL,
+                })
+              );
             })
             .catch((error) => {
               // An error occurred
               // ...
             });
+
+          setDoc(doc(db, "users", uid), { apiCallLimit: 4 })
+            .then(() => {})
+            .catch((error) => {
+              // An error occurred
+              // ...
+              // console.log(error);
+              // console.log(error.message);
+              // console.log(error.code);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + " " + errorMessage);
+          setErrorMessage(
+            errorCode === "auth/email-already-in-use"
+              ? "Email already in use"
+              : "User not found"
+          );
+          console.log(errorCode);
         });
     } else {
       // sign in
@@ -72,26 +100,26 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
+          const { uid } = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + " " + errorMessage);
+          setErrorMessage("Invalid Email ID or Password");
         });
     }
   };
 
   return (
-    <div
-      className={
-        "h-screen bg-cover bg-no-repeat bg-[url('" + BG_IMAGE_URL + "')]"
-      }
-    >
+    <div className={"h-screen"}>
       <div className="h-screen w-screen bg-[rgba(0,0,0,0.5)]">
+        <img
+          src={BG_IMAGE_URL}
+          className="h-screen w-full fixed object-cover -z-20"
+        ></img>{" "}
         <Header />
-        <div className="w-full h-screen flex items-center">
-          <form className="px-12 py-12 w-[400px] min-w-[300px] flex flex-col m-auto bg-[rgba(0,0,0,0.7)] rounded-md">
+        <div className="w-full h-screen flex items-center justify-center">
+          <form className="px-12 m-5 py-12 w-[400px] min-w-[300px] flex flex-col bg-[rgba(0,0,0,0.7)] rounded-md">
             <h1 className="font-bold text-3xl text-white mx-2 mb-6">
               {isSignInForm ? "Sign In" : "Sign Up"}
             </h1>
@@ -126,7 +154,10 @@ const Login = () => {
               {isSignInForm ? "New to Netflix?" : "Already registered ?"}{" "}
               <span
                 className="font-medium text-white cursor-pointer"
-                onClick={() => setIsSignInForm(!isSignInForm)}
+                onClick={() => {
+                  setIsSignInForm(!isSignInForm);
+                  setErrorMessage(null);
+                }}
               >
                 {isSignInForm ? "Sign up now." : "Sign in now."}
               </span>
