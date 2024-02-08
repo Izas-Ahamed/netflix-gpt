@@ -1,8 +1,8 @@
-# <div style="display:flex;align-items:center"><img style="margi" src="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico" alt="REDUX-TOOLKIT" height="35">etflixGPT</div>
+# <div style="display:flex;align-items:center;"><img style="margin:0;padding:0" src="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico" alt="REDUX-TOOLKIT" height="35">etflixGPT</div>
 
 A movie suggesting Web App, interface like Netflix using OpenAI's API (GPT 3.5), where GPT Ai will recommend movies based on user's search.
 
-> [Deployed Link 😀](https://netflixgpt-650ee.web.app)
+> [Deployed Link 😀](https://netflix-gpt-ai.netlify.app)
 
 ### Packages Used:
 
