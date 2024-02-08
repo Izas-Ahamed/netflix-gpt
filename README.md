@@ -28,6 +28,28 @@ A movie suggesting Web App, interface like Netflix using OpenAI's API (GPT 3.5),
 - User can have only GPT search limit of 3.
 - When the user's search limit is over, A modal is opened where users can provide their own `OpenAI API key` to use search.
 
+### Note:
+
+Before you run the app, please make sure you have created required environment variables by creating `.env` file in root directory of the project and add the below required keys:
+
+`REACT_APP_OPENAI_API_KEY=YOUR_KEY`
+
+`REACT_APP_TMDB_TOKEN=YOUR_KEY`
+
+`REACT_APP_FIREBASE_API_KEY=YOUR_KEY`
+
+`REACT_APP_FIREBASE_AUTH_DOMAIN=YOUR_KEY`
+
+`REACT_APP_FIREBASE_PROJECT_ID=YOUR_KEY`
+
+`REACT_APP_FIREBASE_STORAGE_BUCKET=YOUR_KEY`
+
+`REACT_APP_FIREBASE_MESSAGING_SENDER_ID=YOUR_KEY`
+
+`REACT_APP_FIREBASE_APP_ID=YOUR_KEY`
+
+`REACT_APP_FIREBASE_MEASUREMENT_ID=YOUR_KEY`
+
 ## Demo
 
 To run this on your machine, simply go to terminal and to this project directory then do the following commands:
@@ -42,6 +64,6 @@ then type
 npm start
 ```
 
----
+##
 
 That's it 😀!
