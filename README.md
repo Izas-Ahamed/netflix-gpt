@@ -2,7 +2,7 @@
 
 A movie suggesting Web App, interface like Netflix using OpenAI's API (GPT 3.5), where GPT Ai will recommend movies based on user's search.
 
-> [Deployed Link 😀](https://netflixgpt-650ee.web.app)
+> [Deployed Link 😀](https://netflix-gpt-ai.netlify.app/)
 
 ### Packages Used:
 
